@@ -4,11 +4,11 @@ from transformers import pipeline
 
 app = FastAPI()
 
-# Only sentiment (stable)
-sentiment_pipeline = pipeline("sentiment-analysis")
-
 class TextInput(BaseModel):
     text: str
+
+# ❗ DON'T load model here
+model = None
 
 @app.get("/")
 def home():
@@ -16,10 +16,16 @@ def home():
 
 @app.post("/analyze")
 def analyze(input: TextInput):
-    sentiment = sentiment_pipeline(input.text)[0]
+    global model
+
+    # ✅ Lazy load model (first request only)
+    if model is None:
+        model = pipeline("sentiment-analysis")
+
+    result = model(input.text)[0]
 
     return {
         "input_text": input.text,
-        "sentiment": sentiment["label"],
-        "confidence": sentiment["score"]
+        "sentiment": result["label"],
+        "confidence": result["score"]
     }

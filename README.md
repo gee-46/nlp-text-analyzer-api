@@ -1,26 +1,33 @@
 # NLP Text Analyzer API
 
 ## 🚀 Overview
-This project is a FastAPI-based backend service that performs **sentiment analysis** on input text using a pretrained Transformer model from HuggingFace.
+This project is a FastAPI-based backend service that performs **sentiment analysis** on input text and exposes it via REST APIs.
 
-It demonstrates how to integrate machine learning models into a real-world backend system and expose them via REST APIs.
+It demonstrates how to build, deploy, and test an AI-powered backend system in a production-like environment.
+
+---
+
+## 🌐 Live Demo
+👉 https://nlp-text-analyzer-api.onrender.com/  
+👉 https://nlp-text-analyzer-api.onrender.com/docs
 
 ---
 
 ## ⚙️ Features
 - Accepts text input via API
-- Performs sentiment analysis (Positive / Negative)
-- Returns confidence score
-- Fast and lightweight backend using FastAPI
-- Interactive API testing using Swagger UI (`/docs`)
+- Performs sentiment analysis (rule-based for lightweight deployment)
+- Returns structured JSON response
+- Built using FastAPI
+- Deployed on Render
+- Interactive API testing via Swagger UI
 
 ---
 
 ## 🧠 Tech Stack
 - **Python**
 - **FastAPI**
-- **HuggingFace Transformers**
 - **Uvicorn**
+- **Render (Deployment)**
 
 ---
 
@@ -40,7 +47,7 @@ It demonstrates how to integrate machine learning models into a real-world backe
 {
   "input_text": "I love this product",
   "sentiment": "POSITIVE",
-  "confidence": 0.99
+  "confidence": 0.8
 }
 ```
 
@@ -54,7 +61,7 @@ FastAPI Endpoint (/analyze)
         ↓
 Input Validation (Pydantic)
         ↓
-ML Model (HuggingFace Pipeline)
+Sentiment Logic (Lightweight Rule-Based)
         ↓
 JSON Response
 ```
@@ -63,42 +70,43 @@ JSON Response
 
 ## ▶️ How to Run Locally
 
-1. Clone the repository
+### Clone the repository
 ```bash
 git clone https://github.com/gee-46/nlp-text-analyzer-api.git
 cd nlp-text-analyzer-api
 ```
 
-2. Install dependencies
+### Install dependencies
 ```bash
-pip install fastapi uvicorn transformers
+pip install -r requirements.txt
 ```
 
-3. Run the server
+### Run the server
 ```bash
 python -m uvicorn main:app --reload
 ```
 
-4. Open in browser
+### Open in browser
 - API: http://127.0.0.1:8000
 - Docs: http://127.0.0.1:8000/docs
 
 ---
 
 ## 📌 Key Learnings
-- Building REST APIs with FastAPI
-- Integrating ML models into backend systems
-- Handling JSON requests and responses
-- Debugging environment and dependency issues
-- Structuring a real-world AI project
+- Building REST APIs using FastAPI
+- Deploying backend services on cloud (Render)
+- Handling JSON-based APIs
+- Understanding system constraints (memory, deployment limits)
+- Designing scalable AI system architecture
 
 ---
 
 ## 🔮 Future Improvements
+- Integrate real ML models via external APIs (HuggingFace / OpenAI)
 - Add text summarization
-- Add keyword extraction
-- Deploy API (Render / Railway)
-- Add frontend interface
+- Add authentication & rate limiting
+- Add frontend UI
+- Convert into a RAG-based system
 
 ---
 
